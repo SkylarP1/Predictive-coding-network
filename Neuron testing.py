@@ -31,7 +31,7 @@ class Neuron:
                 if inputs[i] == 1:
                     self.traces[i] = 15
                 elif self.traces[i] > 0:
-                    self.traces[i] -= self.v_decay
+                    self.traces[i] = max(0, self.traces[i] + self.v_decay)
             charge_in = sum(inputs[i] * self.weights[i] for i in range(len(inputs)))
             self.v_mem += charge_in
             
