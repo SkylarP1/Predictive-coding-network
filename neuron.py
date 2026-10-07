@@ -20,6 +20,7 @@ class Neuron:
         self.stdp = stdp
         self.refractory = 0
         self.max_refractory = max_refractory
+        self.triggered = 0
 
     def add_input(self, initial_weight=0):
         self.weights.append(initial_weight)
@@ -39,16 +40,19 @@ class Neuron:
             if self.v_mem >= self.v_thresh:
                 self.out = 1
                 self.v_mem = 0
+                self.triggered = 15
                 self.refractory = self.max_refractory
             else:
                 self.out = 0
                 if self.v_mem > 0:
                     self.v_mem = max(0, self.v_mem + self.v_decay)
+                if self.triggered > 0:
+                    self.v_mem = max(0, self.v_mem + self.v_decay)
 
         else:
              self.out = 0
              self.refractory -= 1
-        return self.out
+        return self.out, self.triggered
 
     def applystdp(self):
         for i in range(len(self.traces)):
