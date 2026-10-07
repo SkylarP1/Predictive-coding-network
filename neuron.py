@@ -1,11 +1,11 @@
 import numpy as n
 
 #default trigger threshold
-DEFAULT_V_THRESH = 2
+DEFAULT_V_THRESH = 8
 #how fast the neuron states decay, default -1 per tick
 DEFAULT_DECAY = -1
 DEFAULT_STDP = 8
-DEFAULT_REFRACTORY = 100
+DEFAULT_REFRACTORY = 2
 
 class Neuron:
     def __init__(self, num_inputs=0, v_thresh=DEFAULT_V_THRESH, v_decay=DEFAULT_DECAY, stdp=DEFAULT_STDP, max_refractory = DEFAULT_REFRACTORY):
